@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+		<!-- 引入properties文件 -->
+	<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:*.properties</value>
+            </list>
+        </property>
+   		</bean> -->
+
+<!-- 
+		数据源
+    	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+	        <property name="url" value="${db.master.url}" />
+	        <property name="username" value="${db.master.user}" />
+	        <property name="password" value="${db.master.password}" />
+	        
+	        配置监控统计拦截的filters
+	        <property name="filters" value="mergeStat,wall,log4j2" />
+	        
+	        <property name="initialSize" value="5" />
+	        <property name="maxActive" value="100" />
+	        <property name="minIdle" value="10" />
+	        <property name="maxWait" value="60000" />
+	        <property name="validationQuery" value="SELECT 'x'" />
+	        <property name="testOnBorrow" value="true" />
+	        <property name="testOnReturn" value="true" />
+	        <property name="testWhileIdle" value="true" />
+	        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+	        <property name="minEvictableIdleTimeMillis" value="300000" />
+	        <property name="removeAbandoned" value="true" />
+	        <property name="removeAbandonedTimeout" value="1800" />
+	        <property name="logAbandoned" value="true" />
+  	  </bean>
+  	   -->
+  	  	
+  	  	<!-- 引入Shiro的配置 -->
+  	  	<import resource="classpath:spring-shiro.xml"/>
+  	  
+   
+</beans>
