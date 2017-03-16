@@ -16,9 +16,9 @@ import com.ssm.shiro.entity.User;
 import com.ssm.shiro.service.UserService;
 
 
-public class ShiroRealm extends AuthenticatingRealm{
+public class SecondRealm extends AuthenticatingRealm{
 	
-private static Logger logger = Logger.getLogger(ShiroRealm.class);
+private static Logger logger = Logger.getLogger(SecondRealm.class);
 	    
 	@Autowired
 	private UserService userService;
@@ -26,7 +26,7 @@ private static Logger logger = Logger.getLogger(ShiroRealm.class);
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
-		logger.info("进入FirstRealm doGetAuthenticationInfo");
+		logger.info("进入SecondRealm doGetAuthenticationInfo");
 		//把AuthenticationToken转换为UsernamePasswordToken
 		UsernamePasswordToken upToken=(UsernamePasswordToken) token;
 		//从UsernamePassword中获取username
