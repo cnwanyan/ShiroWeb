@@ -18,7 +18,7 @@ public class ShiroController {
 		Subject currentUser=SecurityUtils.getSubject();
 		if(!currentUser.isAuthenticated()){
 			UsernamePasswordToken token=new UsernamePasswordToken(username, password);
-			//token.setRememberMe(true);  设置是否记住
+			token.setRememberMe(true);  //设置是否记住
 			try {
 				currentUser.login(token);
 			} catch (AuthenticationException e) {
