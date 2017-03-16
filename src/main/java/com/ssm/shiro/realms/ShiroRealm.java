@@ -34,7 +34,7 @@ private static Logger logger = Logger.getLogger(ShiroRealm.class);
 		us.setName(username);
 		User user = this.userService.login(us);
 		//若用户不存在，则可抛出用户不存在异常
-		logger.info(user);
+		logger.info("数据库中获取的用户数据为"+user);
 		if(user==null){
 			logger.info("用户不存在");
 			throw new UnknownAccountException("用户不存在");
