@@ -6,7 +6,8 @@
 		
 		shiroFilter拦截所有请求
 		
-		在filterChainDefinitions中所有配置为匿名的或者不包括在配置范围中的页面都可以直接访问。否则将重定向至LoginUrl
+		在filterChainDefinitions中所有配置为匿名的或者不包括在配置范围中的页面都可以直接访问。
+		否则将重定向至LoginUrl
 
 		
  **************************************
@@ -32,7 +33,8 @@
 	 	所以 shiroFilter中的bean的id必须与web.xml中的filter-name一致
 	 	
 	 	总结：
-	 	DelegatingFilterProxy实际上市filter的一个代理对象，默认情况下，Spring会到IOC容器中查找和<filter-name>对应的filter bean 。
+	 	DelegatingFilterProxy实际上市filter的一个代理对象，默认情况下，Spring会到IOC容器中
+	 	查找和<filter-name>对应的filter bean 。
 	 	也可以通过配置targetBeanName的初始化参数来配置filter bean 的 id
 	 	
 *****************************************
@@ -94,3 +96,7 @@
 		测试时需要logout
 		
 *****************************************
+
+		在使用Spring的声明式事务注解在Service上时，使用的是代理对象，请勿再次于Service层上
+		使用Shiro权限注解，因为Shiro权限注解会使Service层成为代理对象，如果加上transportion注解的话
+		会使Service层成为代理的代理对象，则会抛出类转换异常.
