@@ -8,8 +8,8 @@ create table tb_user(
     primary key(id)
 )
 
-insert into tb_user values (1,"admin","0cb506c8c95a66e87c463bf1a270446c","张三"),
-						   (2,"root","bf006e276607f226f96120354349d81c","管理员"),
+insert into tb_user values (1,"admin","df655ad8d3229f3269fad2a8bab59b6c","张三"),
+						   (2,"root","28cf327cd6b46986752f4a396aecfa23","管理员"),
                            (3,"test","505f1793db87ca593cdd000b48260a88","测试"),
-                           (4,"cs","9c8cae6e5a1e4fde77b9f3be8f8b92f8","猫熊");
+                           (4,"cs","5144bdf22d02bfc624ac107160c59b96","猫熊");
 

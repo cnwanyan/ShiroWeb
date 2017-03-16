@@ -9,6 +9,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.realm.AuthenticatingRealm;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ssm.shiro.entity.User;
@@ -50,7 +51,11 @@ private static Logger logger = Logger.getLogger(ShiroRealm.class);
 		//1.principals 认证的实体信息
 		//2.credentials 密码
 		//3.realm 当前realm对象的name 调用父类的getName方法即可
-		AuthenticationInfo info=new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), getName());
+		//4.credentialsSalt 盐值
+		logger.info("登录成功,登录用户为:"+user.getName());
+		ByteSource credentialsSalt=ByteSource.Util.bytes(user.getUsername());
+		AuthenticationInfo info=new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(),credentialsSalt, getName());
+		
 		return info;
 	}
 

@@ -16,9 +16,9 @@ public class ShiroController {
 	@RequestMapping("/login")
 	public String login(@RequestParam("username")String username,@RequestParam("password")String password){
 		Subject currentUser=SecurityUtils.getSubject();
-		
 		if(!currentUser.isAuthenticated()){
 			UsernamePasswordToken token=new UsernamePasswordToken(username, password);
+			//token.setRememberMe(true);  设置是否记住
 			try {
 				currentUser.login(token);
 			} catch (AuthenticationException e) {

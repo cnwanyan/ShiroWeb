@@ -1,6 +1,7 @@
 package com.ssm.shiro.test;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,10 @@ public class TestSpring {
 	 
 	 public static void main(String [] args){
 		 String algorithmName="MD5";
-		 Object source="cs";
+		 ByteSource salt=ByteSource.Util.bytes("test");
+		 Object source="test";
 		int hashIterations=1024;
-		 System.out.println(new SimpleHash(algorithmName, source, null, hashIterations));
+		 System.out.println(new SimpleHash(algorithmName, source, salt, hashIterations));
 	 }
 
 }

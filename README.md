@@ -73,3 +73,13 @@
 		使用加密后的Password
 		替换当前Realm的credentialsMather 属性 直接使用HashedCredentialsMather 对象
 		并设置加密算法即可
+		
+		添加盐值加密
+		用户名	密码
+		admin	admin
+		test	test
+		cs	    cs
+		root	root
+		
+*****************************************	
+		
