@@ -83,3 +83,7 @@
 		
 *****************************************	
 		
+		授权需要实现其AuthorizingRealm 类，并实现其doGetAuthenticationInfo方法
+		AuthorizingRealm 继承自AuthenticatingRealm，但没有实现AuthenticatingRealm中的
+		doGetAuthenticationInfo，所以认证和授权只需要继承AuthorizingRealm，同时实现
+		他的两个抽象方法
