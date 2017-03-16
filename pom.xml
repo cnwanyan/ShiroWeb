@@ -18,7 +18,7 @@
 		<!-- shiro jar版本 -->
 		<shiro.version>1.2.4</shiro.version>
 		
-		<!-- mybaits 相关jar斑斑  -->
+		<!-- mybaits 相关jar包  -->
 		<mybatis.version>3.2.8</mybatis.version>
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
 		
@@ -121,6 +121,15 @@
 			<artifactId>c3p0</artifactId>
 			<version>${c3p0.version}</version>
 		</dependency>
+		
+		
+		<!-- druid -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid</artifactId>
+		    <version>1.0.28</version>
+		</dependency>
+		
 		
 		<!-- aop代理 -->
 		<dependency>
