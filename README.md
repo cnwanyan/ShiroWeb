@@ -87,3 +87,10 @@
 		AuthorizingRealm 继承自AuthenticatingRealm，但没有实现AuthenticatingRealm中的
 		doGetAuthenticationInfo，所以认证和授权只需要继承AuthorizingRealm，同时实现
 		他的两个抽象方法
+		
+*****************************************	
+
+		权限使用AuthorizingRealm中的回调方法
+		测试时需要logout
+		
+*****************************************

@@ -71,13 +71,16 @@ private static Logger logger = Logger.getLogger(ShiroRealm.class);
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
+		System.err.println("进入权限回调");
 				//1. 从 PrincipalCollection 中来获取登录用户的信息
 				Object principal = principals.getPrimaryPrincipal();
 				
 				//2. 利用登录的用户的信息来用户当前用户的角色或权限(可能需要查询数据库)
 				Set<String> roles = new HashSet<>();
 				roles.add(principal.toString());
-				
+				if("root".equals(principal)){
+					roles.add("user");
+				}
 				//3. 创建 SimpleAuthorizationInfo, 并设置其 reles 属性.
 				SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
 				
