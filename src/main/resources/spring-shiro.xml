@@ -100,7 +100,7 @@
         <property name="loginUrl" value="/login.jsp"/>
         <property name="successUrl" value="/list.jsp"/>
         <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
-        
+        <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"></property>
         <!--  
         	配置哪些页面需要受保护. 
         	以及访问这些页面需要的权限. 
@@ -109,7 +109,7 @@
         	3). logout 登出.
         	4). roles 角色过滤器
         -->
-        <property name="filterChainDefinitions">
+       <!--  <property name="filterChainDefinitions">
             <value>
                 /login.jsp = anon
                	/shiro/login = anon
@@ -120,8 +120,11 @@
                	
                 /** = authc
             </value>
-        </property>
+        </property> -->
     </bean>
     
+    <!-- 配置一个Bean实际上是一个map，通过实例工厂方法的方式 -->
+    <bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapFactory" factory-method="getFilterChainDefinitionMap"></bean>
+    <bean id="filterChainDefinitionMapFactory" class="com.ssm.shiro.factory.FilterChainDefinitionMapFactory"></bean>
 
 </beans>
