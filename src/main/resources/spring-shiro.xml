@@ -3,23 +3,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- =========================================================
-         Shiro Core Components - Not Spring Specific
-         ========================================================= -->
-    <!-- Shiro's main business-tier object for web-enabled applications
-         (use DefaultSecurityManager instead when there is no web environment)-->
     <!--  
     1. 配置 SecurityManager!
     -->     
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    	<!-- 引入cache -->
         <property name="cacheManager" ref="cacheManager"/>
+         <!-- 引入认证配置 -->
         <property name="authenticator" ref="authenticator"></property>
+        <!-- 引入相关的realm，可以是多个 -->
         <property name="realms" ref="jdbcRealm">   </property>
+        <!-- cookie最大记录数 -->
         <property name="rememberMeManager.cookie.maxAge" value="10"></property>
     </bean>
 
-    <!-- Let's use some enterprise caching support for better performance.  You can replace this with any enterprise
-         caching framework implementation that you like (Terracotta+Ehcache, Coherence, GigaSpaces, etc -->
     <!--  
     2. 配置 CacheManager. 
     2.1 需要加入 ehcache 的 jar 包及配置文件. 
@@ -28,6 +25,7 @@
         <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/> 
     </bean>
     
+   
     <bean id="authenticator" 
     	class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
     	<property name="authenticationStrategy">
@@ -48,6 +46,8 @@
     4. 配置 LifecycleBeanPostProcessor. 可以自定的来调用配置在 Spring IOC 容器中 shiro bean 的生命周期方法. 
     -->       
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    
+    
     <!--  
     5. 启用 IOC 容器中使用 shiro 的注解. 但必须在配置了 LifecycleBeanPostProcessor 之后才可以使用. 
     -->     
@@ -56,6 +56,8 @@
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
+
+
 
 	<!--   6. 配置 ShiroFilter. 
     6.1 id 必须和 web.xml 文件中配置的 DelegatingFilterProxy 的 <filter-name> 一致.
@@ -78,8 +80,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /login.jsp = anon
-                /shiro/login = anon
-                
+               	/shiro/login = anon
                 /** = authc
             </value>
         </property>

@@ -10,30 +10,25 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-		<!-- 引入properties文件 -->
-	<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:*.properties</value>
-            </list>
-        </property>
-   		</bean> -->
+		<!-- 开启注解配置 -->
+		<context:annotation-config />
+		<!-- 扫描这些包中的注解 -->
+		<context:component-scan base-package="com.ssm.shiro.common,com.ssm.shiro.dao,com.ssm.shiro.service.impl" />
 
-<!-- 
-		数据源
+
+		<!-- 数据源  -->
     	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-	        <property name="url" value="${db.master.url}" />
-	        <property name="username" value="${db.master.user}" />
-	        <property name="password" value="${db.master.password}" />
-	        
-	        配置监控统计拦截的filters
-	        <property name="filters" value="mergeStat,wall,log4j2" />
-	        
+	        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	        <property name="url" value="jdbc:mysql://localhost:3306/db_shiro" />
+	        <property name="username" value="root" />
+	        <property name="password" value="root" />
+	     <!-- 配置监控统计拦截的filters-->
+	        <property name="filters" value="log4j" />
 	        <property name="initialSize" value="5" />
 	        <property name="maxActive" value="100" />
 	        <property name="minIdle" value="10" />
 	        <property name="maxWait" value="60000" />
-	        <property name="validationQuery" value="SELECT 'x'" />
+	        <property name="validationQuery" value="SELECT 1" />
 	        <property name="testOnBorrow" value="true" />
 	        <property name="testOnReturn" value="true" />
 	        <property name="testWhileIdle" value="true" />
@@ -43,10 +38,33 @@
 	        <property name="removeAbandonedTimeout" value="1800" />
 	        <property name="logAbandoned" value="true" />
   	  </bean>
-  	   -->
+  	 
+  	 <!--配置sqlSessionFactory 以及 Mapper映射文件路径-->
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+  		<!-- 数据源配置 -->
+		<property name="dataSource" ref="dataSource" />
+			 <property name="configLocation" value="classpath:mybatis-config.xml" />
+		 <!-- mapper和resultmap配置路径 -->
+        <property name="mapperLocations">
+            <list>
+                <!-- 表示扫描在com.ssm.shiro.mapping包或以下所有目录中，以Mapping.xml结尾所有文件 -->
+            	<value>classpath:com/ssm/shiro/mapping/*Mapper.xml</value>
+            </list>
+        </property>
+        <!-- SqlMapping对应的实体类所在的包 -->
+        <property name="typeAliasesPackage" value="com.ssm.shiro.entity" />  
+		
+	</bean>
+  	  	
+  	  <!-- 扫描Mapper接口文件并且注入sqlSessionFactory -->
+		<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+		    <property name="basePackage" value="com.ssm.shiro.dao" />
+		    <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		</bean>
+  	  	
+  	  	
   	  	
   	  	<!-- 引入Shiro的配置 -->
-  	  	<import resource="classpath:spring-shiro.xml"/>
-  	  
+  	   <import resource="classpath:spring-shiro.xml"/>
    
 </beans>
