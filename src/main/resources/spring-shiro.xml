@@ -38,7 +38,15 @@
     	3.1 直接配置实现了 org.apache.shiro.realm.Realm 接口的 bean
     -->     
     <bean id="jdbcRealm" class="com.ssm.shiro.realms.ShiroRealm">
-    	
+    <!-- 配置shiro密码的加密算法 -->
+    	<property name="credentialsMatcher">
+    		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+    			<!-- 加密的方式 -->
+    			<property name="hashAlgorithmName" value="MD5"></property>
+    			<!-- 加密的次数 -->
+    			<property name="hashIterations" value="1024"></property>
+    		</bean>
+    	</property>
     </bean>
     
 

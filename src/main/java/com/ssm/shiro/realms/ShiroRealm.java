@@ -25,6 +25,7 @@ private static Logger logger = Logger.getLogger(ShiroRealm.class);
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
+		logger.info("进入doGetAuthenticationInfo");
 		//把AuthenticationToken转换为UsernamePasswordToken
 		UsernamePasswordToken upToken=(UsernamePasswordToken) token;
 		//从UsernamePassword中获取username

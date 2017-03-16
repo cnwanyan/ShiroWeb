@@ -66,6 +66,10 @@
 		5.自定义realm的方法，从数据库中获取对应的记录，返回给shiro
 			(1)实际上需要继承AuthenticatingRealm类
 			(2)实现doGetAuthenticationInfo(AuthenticationToken)方法.
-		6.由shiro完成对密码的比对
+		6.由shiro通过AuthenticatingRealm的credentialsMatcher完成对密码的比对
 		
 *****************************************
+
+		使用加密后的Password
+		替换当前Realm的credentialsMather 属性 直接使用HashedCredentialsMather 对象
+		并设置加密算法即可
