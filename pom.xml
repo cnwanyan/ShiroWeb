@@ -291,7 +291,6 @@
   </dependencies>
    <build>
 		<plugins>
-			<!-- define the project compile level -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
